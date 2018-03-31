@@ -202,12 +202,14 @@ header.masthead .device-container .screen img {
 
 section.speech {
   position: relative;
-  padding: 50px 0;
+  
+  min-height: 93vh;
 }
 
 section.speech h2 {
   font-size: 50px;
   margin-top: 0;
+  
 }
 
 section.speech .badges .badge-link {
@@ -237,9 +239,15 @@ section.speech .badges .badge-link img {
     font-size: 70px;
   }
 }
+section.features  {
+  min-height: 93vh;
+}
 
+section.speech .section-heading{
+  margin-bottom: 30px;
+}
 section.features .section-heading {
-  margin-bottom: 100px;
+  margin-bottom: 30px;
 }
 
 section.features .section-heading h2 {
@@ -250,8 +258,7 @@ section.features .section-heading p {
   margin-bottom: 0;
 }
 
-section.features .device-container,
-section.features .feature-item {
+section.features .device-container {
   max-width: 325px;
   margin: 0 auto;
 }

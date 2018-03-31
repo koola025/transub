@@ -90,8 +90,11 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12 mx-auto">
-            <h2 class="section-heading">Turn speeches to text!</h2>
+                <div class="section-heading text-center">
+                    <h2 class="section-heading">Turn speeches to text!</h2>
             
+                    <hr>
+                </div>
             <div id="content" style="display:none">
                     
                     <div class="col-md-6 mx-auto">
@@ -153,23 +156,14 @@
                         <div class="form-group">
                                 <textarea class="form-control"  id="phraseDiv" style="display: inline-block;"></textarea>
                                 
-                        </div>                        
+                        </div class="buttonGroup">                        
                                     
                         
                                 <button id="startBtn" disabled="disabled" type="button" class="btn btn-outline-dark"><i class="fas fa-microphone"></i></button>
                                 <button id="stopBtn" disabled="disabled" type="button" class="btn btn-outline-dark">Stop</button>
-                              
+                                <button id="downloadBtn" disabled="disabled" type="button" class="btn btn-outline-dark">Download</button>
                             
-                                
-                        
-                            
-                            
-                                
-                        
-                            
-                           
-                                
-                                
+    
                                         
                                         
                                             <span id="hypothesisDiv" style="width:0px;height:0px;display:block;"></span>
@@ -188,68 +182,186 @@
     </section>
 
     <section class="features" id="features">
-      <div class="container">
-        <div class="section-heading text-center">
-          <h2>Unlimited Features, Unlimited Fun</h2>
-          <p class="text-muted">Check out what you can do with this app theme!</p>
-          <hr>
-        </div>
-        <div class="row">
-          <div class="col-lg-4 my-auto">
-            <div class="device-container">
-              <div class="device-mockup iphone6_plus portrait white">
-                <div class="device">
-                  <div class="screen">
-                    <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
-                    <img src="img/demo-screen-1.jpg" class="img-fluid" alt="">
-                  </div>
-                  <div class="button">
-                    <!-- You can hook the "home button" to some JavaScript events or just remove it -->
+            <div class="container">
+              <div class="section-heading text-center">
+                <h2>Analyze handwritten image!</h2>
+                <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+                <hr>
+              </div>
+              <div class="row">
+                <div class="col-md-12 mx-auto">
+                  <div class="container-fluid">
+                    <div class="row">
+                      <div class="col-lg-6 mx-auto">
+                      
+                      Enter the URL to an image of handwritten text, then click the <strong>Read image</strong> button.
+                      <br><br>
+                      Image to read: 
+                      <input type="file" onchange="previewFile()"><br>
+                      <label class="custom-file-upload btn btn-outline-dark">
+                            <input type="file" id="pngPicker" accept=".png"/ onchange="previewFile()">
+                            Upload PNG File
+                    </label> 
+                    <img id="prevImg" src="" height="200" alt="Image preview...">
+                      <input type="text" name="inputImage" id="inputImage" value=""/>
+                      <button class="btn btn-outline-dark" onclick="processImage()">Read image</button>
+                      <br><br>
+                      <div id="wrapper" style=" display:table;">
+                          <div id="jsonOutput" >
+                              Response:
+                              <br><br>
+                              <textarea id="responseTextArea" class="form-control"  style="display: inline-block;"></textarea>
+      
+                          </div>
+                          
+                          <div id="imageDiv" style="width:420px; display:table-cell;">
+                              Source image:
+                              <br><br>
+                              <img id="sourceImage" width="400" />
+                          </div> 
+                      </div>
+                      </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-lg-8 my-auto">
-            <div class="container-fluid">
-              <div class="row">
-                <div class="col-lg-6">
-                  <div class="feature-item">
-                    <i class="icon-screen-smartphone text-primary"></i>
-                    <h3>Device Mockups</h3>
-                    <p class="text-muted">Ready to use HTML/CSS device mockups, no Photoshop required!</p>
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="feature-item">
-                    <i class="icon-camera text-primary"></i>
-                    <h3>Flexible Use</h3>
-                    <p class="text-muted">Put an image, video, animation, or anything else in the screen!</p>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-6">
-                  <div class="feature-item">
-                    <i class="icon-present text-primary"></i>
-                    <h3>Free to Use</h3>
-                    <p class="text-muted">As always, this theme is free to download and use for any purpose!</p>
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="feature-item">
-                    <i class="icon-lock-open text-primary"></i>
-                    <h3>Open Source</h3>
-                    <p class="text-muted">Since this theme is MIT licensed, you can use it commercially!</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+          </section>
+    <script type="text/javascript">
+        function previewFile() {
+            var preview = document.getElementById("prevImg");
+            var file    = document.getElementById("pngPicker").files[0];
+            var input = document.getElementById("inputImage");
+            
+            var reader  = new FileReader();
 
+            reader.addEventListener("load", function () {
+                //preview.src = reader.result;
+                $("#prevImg").attr('src',URL.createObjectURL(file));
+                input.value = URL.createObjectURL(file);
+                
+            }, false);
+
+            if (file) {
+                reader.readAsDataURL(file);
+                console.log("myurl");
+                console.log(input.value);
+                console.log(file.value);
+                console.log(preview.value);
+
+            }
+            
+        }
+            function processImage() {
+                // ********************************************
+                // * Update or verify the following values. *
+                // ********************************************
+
+                // Replace the subscriptionKey string value with your valid subscription key.
+                var subscriptionKey = "13fd40250d8e4e9c8d11a285e35460fe";
+                var obj;
+                var i = 1;
+                var json;
+                                        
+                // Replace or verify the region.
+                //
+                // You must use the same region in your REST API call as you used to obtain your subscription keys.
+                // For example, if you obtained your subscription keys from the westus region, replace
+                // "westcentralus" in the URI below with "westus".
+                //
+                // NOTE: Free trial subscription keys are generated in the westcentralus region, so if you are using
+                // a free trial subscription key, you should not need to change this region.
+                var uriBase = "https://westcentralus.api.cognitive.microsoft.com/vision/v1.0/RecognizeText";
+
+                // Request parameters.
+                var params = {
+                    "handwriting": "true",
+                };
+
+                // Display the image.
+                var sourceImageUrl = document.getElementById("inputImage").value;
+                document.querySelector("#sourceImage").src = sourceImageUrl;
+
+                // This operation requrires two REST API calls. One to submit the image for processing,
+                // the other to retrieve the text found in the image. 
+                //
+                // Perform the first REST API call to submit the image for processing.
+                $.ajax({
+                    url: uriBase + "?" + $.param(params),
+
+                    // Request headers.
+                    beforeSend: function(jqXHR){
+                        jqXHR.setRequestHeader("Content-Type","application/json");
+                        jqXHR.setRequestHeader("Ocp-Apim-Subscription-Key", subscriptionKey);
+                    },
+
+                    type: "POST",
+
+                    // Request body.
+                    data: '{"url": ' + '"' + sourceImageUrl + '"}',
+                })
+
+                .done(function(data, textStatus, jqXHR) {
+                    // Show progress.
+                    $("#responseTextArea").val("Handwritten text submitted. Waiting 10 seconds to retrieve the recognized text.");
+
+                    // Note: The response may not be immediately available. Handwriting recognition is an
+                    // async operation that can take a variable amount of time depending on the length
+                    // of the text you want to recognize. You may need to wait or retry this GET operation.
+                    //
+                    // Wait ten seconds before making the second REST API call.
+                    setTimeout(function () { 
+                        // The "Operation-Location" in the response contains the URI to retrieve the recognized text.
+                        var operationLocation = jqXHR.getResponseHeader("Operation-Location");
+
+                        // Perform the second REST API call and get the response.
+                        $.ajax({
+                            url: operationLocation,
+
+                            // Request headers.
+                            beforeSend: function(jqXHR){
+                                jqXHR.setRequestHeader("Content-Type","application/json");
+                                jqXHR.setRequestHeader("Ocp-Apim-Subscription-Key", subscriptionKey);
+                            },
+
+                            type: "GET",
+                        })
+
+                        .done(function(data) {
+                            // Show formatted JSON on webpage.
+                            obj = JSON.parse(JSON.stringify(data, null, 2));
+                            for (i in obj.recognitionResult.lines){
+                                if (i == 0 ) json = obj.recognitionResult.lines[i].text;
+                                else json += '\n' + obj.recognitionResult.lines[i].text;
+                            }
+
+                            $("#responseTextArea").val(json);
+                        })
+
+                        .fail(function(jqXHR, textStatus, errorThrown) {
+                            // Display error message.
+                            var errorString = (errorThrown === "") ? "Error. " : errorThrown + " (" + jqXHR.status + "): ";
+                            errorString += (jqXHR.responseText === "") ? "" : (jQuery.parseJSON(jqXHR.responseText).message) ? 
+                                jQuery.parseJSON(jqXHR.responseText).message : jQuery.parseJSON(jqXHR.responseText).error.message;
+                            alert(errorString);
+                        });
+                    }, 10000);
+                })
+
+                .fail(function(jqXHR, textStatus, errorThrown) {
+                    // Put the JSON description into the text area.
+                    $("#responseTextArea").val(JSON.stringify(jqXHR, null, 2));
+
+                    // Display error message.
+                    var errorString = (errorThrown === "") ? "Error. " : errorThrown + " (" + jqXHR.status + "): ";
+                    errorString += (jqXHR.responseText === "") ? "" : (jQuery.parseJSON(jqXHR.responseText).message) ? 
+                        jQuery.parseJSON(jqXHR.responseText).message : jQuery.parseJSON(jqXHR.responseText).error.message;
+                    alert(errorString);
+                });
+
+            };
+    </script>
     <section class="cta">
       <div class="cta-content">
         <div class="container">
@@ -321,6 +433,11 @@
 
     <!-- SDK USAGE -->
     <script>
+
+       
+
+
+
         // On document load resolve the SDK dependency
         function Initialize(onComplete) {
             if (!!window.SDK) {
@@ -476,11 +593,13 @@
         var recognizer;
         var previousSubscriptionKey;
         var key = "64561257bc9f4a1c88897f25a61a7964";
+        var k;
 
         document.addEventListener("DOMContentLoaded", function () {
             createBtn = document.getElementById("createBtn");
             startBtn = document.getElementById("startBtn");
             stopBtn = document.getElementById("stopBtn");
+            downloadBtn = document.getElementById("downloadBtn");
             phraseDiv = document.getElementById("phraseDiv");
             hypothesisDiv = document.getElementById("hypothesisDiv");
             statusDiv = document.getElementById("statusDiv");
@@ -497,9 +616,29 @@
             phraseDiv.addEventListener("change", function () {
                 
             });
-           
+            
 
+             function download(filename, text) {
+            var element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+            element.setAttribute('download', filename);
+
+            element.style.display = 'none';
+            document.body.appendChild(element);
+
+            element.click();
+
+            document.body.removeChild(element);
+        }
+
+// Start file download.
+
+            downloadBtn.addEventListener("click", function () {
+                download("newfile.txt",phraseDiv.value);
+               
+            });
             startBtn.addEventListener("click", function () {
+                    k = 1;
                     Setup();
                     //hypothesisDiv.innerHTML = "";
                     phraseDiv.innerHTML = "";
@@ -523,11 +662,13 @@
                 RecognizerStop(SDK, recognizer);
                 startBtn.disabled = false;
                 stopBtn.disabled = true;
+                
             });
 
             Initialize(function (speechSdk) {
                 SDK = speechSdk;
                 startBtn.disabled = false;
+                phraseDiv.innerHTML = "";
             });
         });
 
@@ -556,11 +697,13 @@
 
         function OnSpeechEndDetected() {
             stopBtn.disabled = true;
+            downloadBtn.disabled = true;
         }
         
         function UpdateRecognizedPhrase(json) {
             //hypothesisDiv.innerHTML = "";
-            
+            k++;
+            phraseDiv.rows = k;
             phraseDiv.innerHTML += "\n" + json ;
             phraseDiv.scrollTop = phraseDiv.scrollHeight;
         }
@@ -568,6 +711,7 @@
         function OnComplete() {
             startBtn.disabled = false;
             stopBtn.disabled = true;
+            downloadBtn.disabled = false;
         }
     </script>
 </body>

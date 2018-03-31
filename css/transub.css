@@ -3,8 +3,21 @@
   border-color:black;
   float: center;
   overflow: auto;
-  height: 50vh;
+  max-height: 30vh;
+  vertical-align: bottom;
+  text-align: bottom;
   
+  
+}
+#responseTextArea{
+    background-color:rgba(0,0,0,0) !important;
+  border-color:black;
+  position: absolute;
+  float: center;
+  overflow: auto;
+  max-height: 30vh;
+  vertical-align: bottom;
+  text-align: bottom;
 }
 
 #filePicker{
@@ -19,4 +32,12 @@ input[type="file"] {
 
 .input-group {
     float: left;
+}
+
+#content {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    
+    right: 0;
 }
