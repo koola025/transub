@@ -9,11 +9,11 @@
   
   
 }
-#responseTextArea{
+#responseTextArea{margin-top:2vh;
     background-color:rgba(0,0,0,0) !important;
   border-color:black;
   position: absolute;
-  float: center;
+  margin-top: 10vh;
   overflow: auto;
   max-height: 30vh;
   vertical-align: bottom;
@@ -34,10 +34,46 @@ input[type="file"] {
     float: left;
 }
 
-#content {
-    position: relative;
-    bottom: 0;
+
+#imageDiv{
+    position: absolute;
+    right:0;
     left: 0;
+    height: 20vh;
+    text-align: center;
+    background-color: black;
     
-    right: 0;
+}
+#inputImage{
+    width: 13vw;
+}
+#readImg {
+    
+    
+}
+#downloadBtn2 {
+    float: right;
+}
+
+#sourceImage {
+    position: absolute;
+    margin-right:auto;
+    margin-left: auto;
+    padding-top:1vh;
+    
+    
+    
+   
+}
+
+#tmp {
+    height:2vh;
+}
+
+#fix{
+    margin-top: 30vh;
+}
+img {
+    max-width: 100%;
+    height: auto;
 }

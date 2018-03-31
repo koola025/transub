@@ -196,30 +196,30 @@
                       
                       Enter the URL to an image of handwritten text, then click the <strong>Read image</strong> button.
                       <br><br>
-                      Image to read: 
-                      <input type="file" onchange="previewFile()"><br>
-                      <label class="custom-file-upload btn btn-outline-dark">
-                            <input type="file" id="pngPicker" accept=".png"/ onchange="previewFile()">
-                            Upload PNG File
-                    </label> 
-                    <img id="prevImg" src="" height="200" alt="Image preview...">
-                      <input type="text" name="inputImage" id="inputImage" value=""/>
-                      <button class="btn btn-outline-dark" onclick="processImage()">Read image</button>
-                      <br><br>
-                      <div id="wrapper" style=" display:table;">
-                          <div id="jsonOutput" >
-                              Response:
-                              <br><br>
-                              <textarea id="responseTextArea" class="form-control"  style="display: inline-block;"></textarea>
-      
-                          </div>
+
+                      <div class="input-group mb-3 col-6 mx-auto">
+                            <div class="input-group-prepend">
+                              <label class="input-group-text" for="inputGroupSelect01">URL</label>
+                              <input type="text" name="inputImage" id="inputImage" class="custom-file-upload"value=""/>
+                            </div>
+                            
+                        </div>  
+                      
+                    
+                      
+                      <button id="readImg" class="btn btn-outline-dark" onclick="processImage()">Read</button>
+                      <button id="downloadBtn2"  type="button" class="btn btn-outline-dark">Download</button>
+                      
+                      <textarea id="responseTextArea" class="form-control"></textarea>
+                      <div id ="fix"class="form-group">
+                       
+                            
+                            <div class="col-lg-8 mx-auto">
                           
-                          <div id="imageDiv" style="width:420px; display:table-cell;">
-                              Source image:
-                              <br><br>
-                              <img id="sourceImage" width="400" />
-                          </div> 
-                      </div>
+                              
+                        <img id="sourceImage">
+                            </div>
+                        </div> 
                       </div>
                       </div>
                     </div>
@@ -229,30 +229,9 @@
             </div>
           </section>
     <script type="text/javascript">
-        function previewFile() {
-            var preview = document.getElementById("prevImg");
-            var file    = document.getElementById("pngPicker").files[0];
-            var input = document.getElementById("inputImage");
+        var downloadBtn = document.getElementById("downloadBtn2");
             
-            var reader  = new FileReader();
-
-            reader.addEventListener("load", function () {
-                //preview.src = reader.result;
-                $("#prevImg").attr('src',URL.createObjectURL(file));
-                input.value = URL.createObjectURL(file);
-                
-            }, false);
-
-            if (file) {
-                reader.readAsDataURL(file);
-                console.log("myurl");
-                console.log(input.value);
-                console.log(file.value);
-                console.log(preview.value);
-
-            }
-            
-        }
+        
             function processImage() {
                 // ********************************************
                 // * Update or verify the following values. *
@@ -263,7 +242,7 @@
                 var obj;
                 var i = 1;
                 var json;
-                                        
+                //downloadBtn.disabled = true;                       
                 // Replace or verify the region.
                 //
                 // You must use the same region in your REST API call as you used to obtain your subscription keys.
@@ -282,7 +261,8 @@
                 // Display the image.
                 var sourceImageUrl = document.getElementById("inputImage").value;
                 document.querySelector("#sourceImage").src = sourceImageUrl;
-
+                var s = document.getElementById("responseTextArea");
+                
                 // This operation requrires two REST API calls. One to submit the image for processing,
                 // the other to retrieve the text found in the image. 
                 //
@@ -305,7 +285,7 @@
                 .done(function(data, textStatus, jqXHR) {
                     // Show progress.
                     $("#responseTextArea").val("Handwritten text submitted. Waiting 10 seconds to retrieve the recognized text.");
-
+                    
                     // Note: The response may not be immediately available. Handwriting recognition is an
                     // async operation that can take a variable amount of time depending on the length
                     // of the text you want to recognize. You may need to wait or retry this GET operation.
@@ -335,7 +315,8 @@
                                 if (i == 0 ) json = obj.recognitionResult.lines[i].text;
                                 else json += '\n' + obj.recognitionResult.lines[i].text;
                             }
-
+                            s.scrollTop = s.scrollHeight;
+                            downloadBtn.disabled = false;
                             $("#responseTextArea").val(json);
                         })
 
@@ -351,7 +332,7 @@
 
                 .fail(function(jqXHR, textStatus, errorThrown) {
                     // Put the JSON description into the text area.
-                    $("#responseTextArea").val(JSON.stringify(jqXHR, null, 2));
+                    //$("#responseTextArea").val(JSON.stringify(jqXHR, null, 2));
 
                     // Display error message.
                     var errorString = (errorThrown === "") ? "Error. " : errorThrown + " (" + jqXHR.status + "): ";
@@ -600,6 +581,7 @@
             startBtn = document.getElementById("startBtn");
             stopBtn = document.getElementById("stopBtn");
             downloadBtn = document.getElementById("downloadBtn");
+            downloadBtn2 = document.getElementById("downloadBtn2");
             phraseDiv = document.getElementById("phraseDiv");
             hypothesisDiv = document.getElementById("hypothesisDiv");
             statusDiv = document.getElementById("statusDiv");
@@ -635,6 +617,10 @@
 
             downloadBtn.addEventListener("click", function () {
                 download("newfile.txt",phraseDiv.value);
+               
+            });
+            downloadBtn2.addEventListener("click", function () {
+                download("newfile.txt",responseTextArea.value);
                
             });
             startBtn.addEventListener("click", function () {
