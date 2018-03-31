@@ -1,0 +1,22 @@
+#phraseDiv{
+  background-color:rgba(0,0,0,0) !important;
+  border-color:black;
+  float: center;
+  overflow: auto;
+  height: 50vh;
+  
+}
+
+#filePicker{
+    background-color:rgba(0,0,0,0) !important;
+    border-color:black;
+}
+
+input[type="file"] {
+    display: none;
+    
+}
+
+.input-group {
+    float: left;
+}

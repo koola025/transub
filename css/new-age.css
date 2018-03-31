@@ -202,7 +202,7 @@ header.masthead .device-container .screen img {
 
 section.speech {
   position: relative;
-  padding: 150px 0;
+  padding: 50px 0;
 }
 
 section.speech h2 {
@@ -223,9 +223,7 @@ section.speech .badges .badge-link img {
   height: 60px;
 }
 
-section.speech button {
-  height: 60px;
-}
+
 
 @media (min-width: 768px) {
   section.speech .badges .badge-link {
@@ -442,6 +440,3 @@ footer ul li a:hover, footer ul li a:focus, footer ul li a:active, footer ul li 
   padding: 15px 45px;
 }
 
-#micButton {
-  background-color: black;
-}
