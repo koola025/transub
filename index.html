@@ -62,22 +62,16 @@
               <div class="row h-100">
                 <div class="col-lg-7 my-auto">
                   <div class="header-content mx-auto">
-                    <h1 class="mb-5">New Age is an app landing page that will help you beautifully showcase your new mobile app, or anything else!</h1>
-                    <a href="#speech" class="btn btn-outline btn-xl js-scroll-trigger">Start Now for Free!</a>
+                    <h1 class="mb-5">Transub is a web app that will help you generate subtitle files from audio and pictures immediately.</h1>
+                    <a href="#speech" class="btn btn-outline btn-xl js-scroll-trigger">Start Now!</a>
                   </div>
                 </div>
                 <div class="col-lg-5 my-auto">
                   <div class="device-container">
-                    <div class="device-mockup iphone6_plus portrait white">
-                      <div class="device">
-                        <div class="screen">
-                          <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
-                          <img src="img/demo-screen-1.jpg" class="img-fluid" alt="">
-                        </div>
-                        <div class="button">
-                          <!-- You can hook the "home button" to some JavaScript events or just remove it -->
-                        </div>
-                      </div>
+                    <div class="pic">
+                            <img src="logo.png" style="width:20vw">
+                            
+                            
                     </div>
                   </div>
                 </div>
@@ -98,8 +92,8 @@
             <div id="content" style="display:none">
                     
                     <div class="col-md-6 mx-auto">
-                        
-                        <div class="input-group mb-3 col-6">
+                        <div class = "row">
+                        <div class="input-group mb-2 col-6">
                                     <div class="input-group-prepend">
                                       <label class="input-group-text" for="inputGroupSelect01">Language</label>
                                     </div>
@@ -137,10 +131,11 @@
                                             <option value="zh-TW">Chinese - TW</option>                                      
                                     </select>
                         </div>  
-                        <label class="custom-file-upload btn btn-outline-dark">
+                        <label class="col-md-6 custom-file-upload btn btn-outline-dark">
                                 <input type="file" id="filePicker" accept=".wav"/ >
                                 Upload Audio File
                         </label> 
+                    </div>
                     </div>   
 
                 <!--        <div class="input-group mb-3 col-6" id="inputSelection">
@@ -188,41 +183,41 @@
                 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
                 <hr>
               </div>
-              <div class="row">
-                <div class="col-md-12 mx-auto">
-                  <div class="container-fluid">
-                    <div class="row">
-                      <div class="col-lg-6 mx-auto">
-                      
-                      Enter the URL to an image of handwritten text, then click the <strong>Read image</strong> button.
-                      <br><br>
-
-                      <div class="input-group mb-3 col-6 mx-auto">
-                            <div class="input-group-prepend">
-                              <label class="input-group-text" for="inputGroupSelect01">URL</label>
-                              <input type="text" name="inputImage" id="inputImage" class="custom-file-upload"value=""/>
-                            </div>
+            
+            <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">Enter the URL to an image of handwritten text, then click the <strong>Read image</strong> button.</div>
+                    <div class="col-md-3"></div>
+            </div>     
+            <br>
+            <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3">
+                        <div class="input-group">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text" >URL</span>
+                                    </div>
+                                    <input type="text" class="form-control" aria-label="Default" name="inputImage" id="inputImage" value="" >
+                                </div>
+                        
                             
-                        </div>  
+                        </div>
+                    <div class="col-md-1" ><button id="readImg" class="btn btn-outline-dark" onclick="processImage()">Read</button></div>
+                    <div class="col-md-2"><button id="downloadBtn2"  type="button" class="btn btn-outline-dark">Download</button></div>
+                    <div class="col-md-3"></div>
+            </div> 
+            <br>
+            <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3"><textarea id="responseTextArea" class="form-control" ></textarea></div>
+                    <div class="col-md-3"><img id="sourceImage" style="width:20vw;"></div>
+                    <div class="col-md-3"></div>
+            </div>                            
+                                          
+                                          
+                                          
+                                    </div>
                       
-                    
-                      
-                      <button id="readImg" class="btn btn-outline-dark" onclick="processImage()">Read</button>
-                      <button id="downloadBtn2"  type="button" class="btn btn-outline-dark">Download</button>
-                      
-                      <textarea id="responseTextArea" class="form-control"></textarea>
-                      <div id ="fix"class="form-group">
-                       
-                            
-                            <div class="col-lg-8 mx-auto">
-                          
-                              
-                        <img id="sourceImage">
-                            </div>
-                        </div> 
-                      </div>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -343,44 +338,54 @@
 
             };
     </script>
-    <section class="cta">
-      <div class="cta-content">
-        <div class="container">
-          <h2>Stop waiting.<br>Start building.</h2>
-          <a href="#contact" class="btn btn-outline btn-xl js-scroll-trigger">Let's Get Started!</a>
-        </div>
-      </div>
-      <div class="overlay"></div>
-    </section>
+    
 
     <section class="contact bg-primary" id="contact">
       <div class="container">
         <h2>We
           <i class="fa fa-heart"></i>
           new friends!</h2>
-        <ul class="list-inline list-social">
-          <li class="list-inline-item social-twitter">
-            <a href="#">
-              <i class="fa fa-twitter"></i>
-            </a>
-          </li>
-          <li class="list-inline-item social-facebook">
-            <a href="#">
-              <i class="fa fa-facebook"></i>
-            </a>
-          </li>
-          <li class="list-inline-item social-google-plus">
-            <a href="#">
-              <i class="fa fa-google-plus"></i>
-            </a>
-          </li>
-        </ul>
+          <div class="row allpic">
+          <div class="card" >
+                <img class="card-img-top" src="s.jpg" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Starla Yang</h5>
+                  <p class="card-text"></p>
+                  <a href="#" class="btn btn-primary">Contact</a>
+                </div>
+            </div>
+            <div class="card " >
+                    <img class="card-img-top" src="y.jpg" alt="Card image cap">
+                    <div class="card-body">
+                      <h5 class="card-title">Roy Yang</h5>
+                      <p class="card-text"></p>
+                      <a href="#" class="btn btn-primary">Contact</a>
+                    </div>
+            </div>
+            <div class="card " >
+                    <img class="card-img-top" src="o.jpg" alt="Card image cap">
+                    <div class="card-body">
+                      <h5 class="card-title">Yu Feng Ou</h5>
+                      <p class="card-text"></p>
+                      <a href="#" class="btn btn-primary">Contact</a>
+                    </div>
+            </div>
+            <div class="card ">
+                    <img class="card-img-top" src="r.jpg" alt="Card image cap">
+                    <div class="card-body">
+                      <h5 class="card-title">Ru Ru Hsieh</h5>
+                      <p class="card-text"></p>
+                      <a href="#" class="btn btn-primary">Contact</a>
+                    </div>
+            </div>
+        </div>
       </div>
     </section>
 
     <footer>
       <div class="container">
-        <p>&copy; Your Website 2018. All Rights Reserved.</p>
+        <p>&copy; Space Tab WTF 2018. All Rights Reserved.</p>
+        <!--
         <ul class="list-inline">
           <li class="list-inline-item">
             <a href="#">Privacy</a>
@@ -392,6 +397,7 @@
             <a href="#">FAQ</a>
           </li>
         </ul>
+    -->
       </div>
     </footer>
 

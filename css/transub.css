@@ -9,15 +9,14 @@
   
   
 }
-#responseTextArea{margin-top:2vh;
+#responseTextArea{
     background-color:rgba(0,0,0,0) !important;
   border-color:black;
-  position: absolute;
-  margin-top: 10vh;
+  float: left;
+  
   overflow: auto;
-  max-height: 30vh;
-  vertical-align: bottom;
-  text-align: bottom;
+  height: 30vh;
+  
 }
 
 #filePicker{
@@ -30,50 +29,26 @@ input[type="file"] {
     
 }
 
-.input-group {
+
+#divImage{
+    float: right;
+    clear: right;
+}
+
+    
+}
+#sourceImage{
+    width: 100px;
+}
+
+
+
+#downloadBtn2 {
     float: left;
 }
 
-
-#imageDiv{
-    position: absolute;
-    right:0;
-    left: 0;
-    height: 20vh;
-    text-align: center;
-    background-color: black;
-    
-}
-#inputImage{
-    width: 13vw;
-}
-#readImg {
-    
-    
-}
-#downloadBtn2 {
-    float: right;
-}
-
-#sourceImage {
-    position: absolute;
-    margin-right:auto;
-    margin-left: auto;
-    padding-top:1vh;
-    
-    
-    
+.card {
    
-}
-
-#tmp {
-    height:2vh;
-}
-
-#fix{
-    margin-top: 30vh;
-}
-img {
-    max-width: 100%;
-    height: auto;
+    width: 14vw;
+    margin: 4vw;
 }
