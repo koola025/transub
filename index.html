@@ -203,7 +203,7 @@
                             
                         </div>
                     <div class="col-md-1" ><button id="readImg" class="btn btn-outline-dark" onclick="processImage()">Read</button></div>
-                    <div class="col-md-2"><button id="downloadBtn2"  type="button" class="btn btn-outline-dark">Download</button></div>
+                    <div class="col-md-2"><button id="downloadBtn2"  disabled="disabled" type="button" class="btn btn-outline-dark">Download</button></div>
                     <div class="col-md-3"></div>
             </div> 
             <br>
@@ -224,7 +224,7 @@
             </div>
           </section>
     <script type="text/javascript">
-        var downloadBtn = document.getElementById("downloadBtn2");
+        var downloadBtn2 = document.getElementById("downloadBtn2");
             
         
             function processImage() {
@@ -311,7 +311,7 @@
                                 else json += '\n' + obj.recognitionResult.lines[i].text;
                             }
                             s.scrollTop = s.scrollHeight;
-                            downloadBtn.disabled = false;
+                            downloadBtn2.disabled = false;
                             $("#responseTextArea").val(json);
                         })
 
@@ -415,8 +415,8 @@
 
 
 
-    <!-- SDK REFERENCE -->
-    <script src="../../distrib/speech.sdk.bundle.js"></script>
+    <!-- SDK REFERENCE
+    <script src="../../distrib/speech.sdk.bundle.js"></script> -->
 
     <!-- SDK USAGE -->
     <script>
@@ -448,7 +448,7 @@
                     recognitionMode = SDK.RecognitionMode.Dictation;    
                     break;
                 default:
-                    recognitionMode = SDK.RecognitionMode.Conversation;
+                    recognitionMode = SDK.RecognitionMode.Dictation;
             }
 
             var recognizerConfig = new SDK.RecognizerConfig(
@@ -523,11 +523,11 @@
                         console.log(JSON.stringify(event.Result)); // check console for other information in result
                         break;
                     case "SpeechHypothesisEvent" :
-                        UpdateRecognizedHypothesis(event.Result.Text, false);
+                        //UpdateRecognizedHypothesis(event.Result.Text, false);
                         console.log(JSON.stringify(event.Result)); // check console for other information in result
                         break;
                     case "SpeechFragmentEvent" :
-                        UpdateRecognizedHypothesis(event.Result.Text, true);
+                        //UpdateRecognizedHypothesis(event.Result.Text, true);
                         console.log(JSON.stringify(event.Result)); // check console for other information in result
                         break;
                     case "SpeechEndDetectedEvent" :
@@ -595,7 +595,7 @@
             languageOptions = document.getElementById("languageOptions");
             formatOptions = "Simple";
             inputSource = document.getElementById("inputSource");
-            recognitionMode = "Conversation";
+            recognitionMode = "Dictation";
             filePicker = document.getElementById('filePicker');
 
             languageOptions.addEventListener("change", Setup);
@@ -696,6 +696,8 @@
             //hypothesisDiv.innerHTML = "";
             k++;
             phraseDiv.rows = k;
+            if (k == 2) phraseDiv.innerHTML = json ;
+            else
             phraseDiv.innerHTML += "\n" + json ;
             phraseDiv.scrollTop = phraseDiv.scrollHeight;
         }
