@@ -3,10 +3,12 @@
   border-color:black;
   float: center;
   overflow: auto;
-  max-height: 30vh;
+  max-height: 25vh;
   vertical-align: bottom;
   text-align: bottom;
-  
+  margin-top: 3vh;
+  margin-bottom: 2vh;
+  max-width: 60vw;
   
 }
 #responseTextArea{
