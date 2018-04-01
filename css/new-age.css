@@ -203,7 +203,7 @@ header.masthead .device-container .screen img {
 section.speech {
   position: relative;
   
-  min-height: 93vh;
+  min-height: 95vh;
 }
 
 section.speech h2 {
@@ -241,7 +241,7 @@ section.speech .badges .badge-link img {
 }
 section.features  {
   position: relative;
-  min-height: 93vh;
+  min-height: 95vh;
 }
 
 section.speech .section-heading{
@@ -334,7 +334,7 @@ section.cta .overlay {
 
 section.contact {
   text-align: center;
-  height: 83vh;
+  height: 85vh;
 }
 
 section.contact h2 {
